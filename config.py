@@ -1,6 +1,6 @@
 def makeData(date, court, starttime):
     ls=[]
-    if len(date) != len(court):
+    if len(date) != len(court) or len(date) != len(starttime):
         print('입력 값들의 길이가 서로 다릅니다')
         return 0
     for i in range(len(date)):

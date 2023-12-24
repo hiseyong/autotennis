@@ -2,12 +2,12 @@ import requests
 import config
 
 
+#이부분을 수정할것
+date=[20240126,20240129] #날짜 YYYYMMDD형식으로 작성, 콤마로 구분
+court=[1,1] #코트번호, 콤마로 구분
+starttime=[12,12] #시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
 
-date=[20230810]
-court=[1]
-starttime=[14]
-
-
+#이 아래는 수정 금지
 
 datels=config.makeData(date,court,starttime)
 print(datels)
@@ -21,7 +21,7 @@ headers={
     'Referer':'https://yeyak.gys.or.kr/'
 }
 
-res = session.get('https://gbc.gys.or.kr:446/member/sso_login_process.php?memid=dkstjdclf&memno=10440&returl=https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07', headers=headers)
+res = session.get('https://gbc.gys.or.kr:446/member/sso_login_process.php?memid=hiseyong&memno=420177&returl=https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07', headers=headers)
 print(res.text)
 
 
