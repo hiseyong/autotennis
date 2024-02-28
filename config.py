@@ -13,7 +13,7 @@ def makeData(date, court, starttime):
             'use_hp': '010-8392-0725',
             'use_fax': '',
             'use_zipcd': '04110',
-            'use_addr': '경기도 고양시 덕양구 강매동 193-4',
+            'use_addr': '경기도 고양시 덕양구 강매동 193-4'.encode(encoding='cp949'),
             'use_event_name': '',
             'inwon': '2',
             'etc': '',

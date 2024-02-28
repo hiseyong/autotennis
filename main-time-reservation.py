@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 import time
 
 # 수정 가능한 부분
-date = [20240126, 20240129]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
-court = [1, 1]  # 코트번호, 콤마로 구분
-starttime = [12, 12]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
+date = [20240313,20240314,20240315,20240327]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
+court = [1,1,1,1]  # 코트번호, 콤마로 구분
+starttime = [10,10,10,8]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
 
 # 이 아래는 수정 금지
 datels = config.makeData(date, court, starttime)
@@ -18,10 +18,19 @@ if datels == 0:
 now = datetime.now()
 
 # 날짜가 25일이면서 10시가 되기 전까지 기다림
+
+if now.day > 25:
+    print("날짜가 25일이 지났습니다. 다음 달 25일에 시도하세요")
+    exit()
+
+while now.day < 25:
+    print("아직 25일이 되지 않았습니다. 자동으로 대기 후 25일 10시에 예약합니다.")
+    print("현재 날짜:",str(now.day)+"일")
+
 if now.day == 25:
     while now.hour < 10:
-        print("아직 10시가 되지 않았습니다. 기다리는 중...")
-        time.sleep(60)  # 1분 동안 대기
+        print("아직 10시가 되지 않았습니다. 기다리는 중...", "현재 시각:", str(now.hour)+'시',str(now.minute)+'분',str(now.second)+'초')
+        time.sleep(1)  # 1초 동안 대기
         now = datetime.now()
 
     # 10시가 되었거나 넘었으면 서버에 요청을 보냄
