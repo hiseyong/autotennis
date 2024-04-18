@@ -3,17 +3,18 @@ import config
 
 
 #이부분을 수정할것
-date = [20240320]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
-court = [3]  # 코트번호, 콤마로 구분
-starttime = [12]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
+date = [20240422]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
+court = [1]  # 코트번호, 콤마로 구분
+starttime = [14]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
 
 #이 아래는 수정 금지
 
-datels=config.makeData(date,court,starttime)
+session=requests.session()
+
+datels=config.makeData(date,court,starttime, session)
 print(datels)
 if datels == 0:
     exit()
-session=requests.session()
 
 headers={
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
