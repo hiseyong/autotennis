@@ -3,7 +3,7 @@ import config
 
 
 #이부분을 수정할것
-date = [20240422]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
+date = [20240528]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
 court = [1]  # 코트번호, 콤마로 구분
 starttime = [14]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
 
@@ -27,5 +27,6 @@ print(res.text)
 
 
 for i in datels:
+    prereq = session.post('	https://gbc.gys.or.kr:446/rent/rent_period_apply-1.php', headers=headers, data=i)
     respon = session.post('https://gbc.gys.or.kr:446/rent/rent_period_proc.php', headers=headers, data=i)
     print(respon.content.decode('cp949'))
