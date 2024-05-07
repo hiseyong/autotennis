@@ -9,7 +9,10 @@ court = [1,1,1,1]  # 코트번호, 콤마로 구분
 starttime = [10,10,10,8]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
 
 # 이 아래는 수정 금지
-datels = config.makeData(date, court, starttime)
+
+session = requests.session()
+
+datels = config.makeData(date, court, starttime, session)
 print(datels)
 if datels == 0:
     exit()
@@ -34,7 +37,7 @@ if now.day == 25:
         now = datetime.now()
 
     # 10시가 되었거나 넘었으면 서버에 요청을 보냄
-    session = requests.session()
+
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
