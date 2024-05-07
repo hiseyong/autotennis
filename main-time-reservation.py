@@ -48,6 +48,7 @@ if now.day == 25:
     print(res.text)
 
     for i in datels:
+        prereq = session.post('	https://gbc.gys.or.kr:446/rent/rent_period_apply-1.php', headers=headers, data=i)
         respon = session.post('https://gbc.gys.or.kr:446/rent/rent_period_proc.php', headers=headers, data=i)
         print(respon.content.decode('cp949'))
 else:
