@@ -66,9 +66,15 @@ def get_rent_chk(session, date, court, starttime):
         strstarttime = str(starttime)
         strendtime = str(starttime+2)
 
-    response = session.post('https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07',headers=headers, data=data)
+    while True:
+        try:
+            response = session.post('https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07',headers=headers, data=data)
+            content = response.content.decode(encoding='cp949')
+            idx = content.index(strstarttime + '00' + strendtime + '00')
+            rent_chk = content[idx:idx + 11]
+            break
+        except:
+            pass
 
-    content =  response.content.decode(encoding='cp949')
-    idx = content.index(strstarttime+'00'+strendtime+'00')
-    rent_chk = content[idx:idx+11]
+
     return rent_chk
