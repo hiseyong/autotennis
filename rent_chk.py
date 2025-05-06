@@ -1,3 +1,5 @@
+import ssl
+
 async def get_rent_chk(session, date, court, starttime):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
@@ -14,8 +16,14 @@ async def get_rent_chk(session, date, court, starttime):
         'returl': 'https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07'
     }
 
+    ssl_context = ssl.create_default_context()
+    ssl_context.set_ciphers('DEFAULT@SECLEVEL=1')  # 낮은 보안 레벨 허용
+
+    async with session.post('https://www.gys.or.kr/member/SSO/newlogin', headers=headers, data={"memid":"hiseyong", "memno":"420177", "returl": "https://gbc.gys.or.kr/"}, ssl=ssl_context) as res:
+        pass
+
     async with session.get(login_url, headers=headers, params=login_params) as res:
-        print(await res.text())
+        pass
 
     strstarttime = f"{starttime:02}"
     strendtime = f"{starttime + 2:02}"
@@ -34,6 +42,7 @@ async def get_rent_chk(session, date, court, starttime):
 
     try:
         async with session.post(rent_url, headers=headers, data=data) as response:
+            print(await response.text(encoding='cp949'))
             content = await response.text(encoding='cp949')
             idx = content.index(strstarttime + '00' + strendtime + '00')
             end_idx = content.index('"', idx)
