@@ -1,5 +1,5 @@
 import requests
-def wait_until_open(date):
+def wait_until_open(date, session):
     print("사이트 오픈 대기중...")
     while True:
         data = {
@@ -18,11 +18,12 @@ def wait_until_open(date):
             'Origin': 'https://yeyak.gys.or.kr',
             'Referer': 'https://yeyak.gys.or.kr/'
         }
-        session = requests.Session()
-        session.get(
-            'https://gbc.gys.or.kr:446/member/sso_login_process.php?memid=hiseyong&memno=420177&returl=https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07',
-            headers=headers)
+        #session = requests.Session()
+        #session.get(
+            # 'https://gbc.gys.or.kr:446/member/sso_login_process.php?memid=hiseyong&memno=420177&returl=https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07',
+            # headers=headers)
         res = session.post('https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07', data=data, headers=headers)
         # print(res.content.decode('cp949'))
         # if "대관 신청접수 기간이 아닙니다" in res.content.decode('cp949'): continue
-        if "대관 신청접수 기간이 아닙니다" not in res.content.decode('cp949'): break
+        if "대관 신청접수 기간이 아닙니다" not in res.content.decode('cp949'):
+            break
