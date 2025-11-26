@@ -19,7 +19,17 @@ async def make_data(date, court, starttime):
             )
 
         # rent_chk 리스트 비동기로 가져오기
-        rent_chk_list = await asyncio.gather(*tasks)
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        rent_chk_list = []
+
+        for result in results:
+            # 예외 발생 시 gather는 Exception 객체를 반환함
+            if isinstance(result, Exception):
+                # 원하는 경우 로그 찍기 가능
+                # print("get_rent_chk error:", result)
+                continue  # rent_chk_list에 추가하지 않음
+            rent_chk_list.append(result)
 
         ls = []
         for i, rent_chk in enumerate(rent_chk_list):

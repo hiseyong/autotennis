@@ -13,9 +13,9 @@ class SSLAdapter(HTTPAdapter):
         self.poolmanager = PoolManager(*args, **kwargs)
 
 #이부분을 수정할것
-date = [20251128,20250729]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
-court = [1,1]  # 코트번호, 콤마로 구분
-starttime = [8,8]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
+date = [20251205]  # 날짜 YYYYMMDD 형식으로 작성, 콤마로 구분
+court = [1]  # 코트번호, 콤마로 구분
+starttime = [14]  # 시작하는 시각을 24시간 형식(오후 1시 = 13)으로 작성, 콤마로 구분
 
 
 #이 아래는 수정 금지
