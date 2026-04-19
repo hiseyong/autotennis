@@ -25,7 +25,7 @@ def wait_until_open(date, session):
             res = session.post('https://gbc.gys.or.kr:446/rent/tennis_rent.php?part_opt=07', data=data, headers=headers)
             # print(res.content.decode('cp949'))
             # if "대관 신청접수 기간이 아닙니다" in res.content.decode('cp949'): continue
-            if "대관 신청접수 기간이 아닙니다" not in res.content.decode('cp949'):
+            if "대관 신청접수 기간이 아닙니다" not in res.content.decode('cp949') and "선택하신 날짜는 대관 가능일이 아닙니다." not in res.content.decode('cp949'):
                 break
         except:
             continue
